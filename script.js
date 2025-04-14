@@ -112,31 +112,8 @@ function initTextAnalyzer() {
     }
 }
 
-function loadSampleText() {
-    const inputText = document.getElementById('input-text');
-    
-    fetch('https://raw.githubusercontent.com/norvig/nltk_data/gh-pages/packages/corpora/gutenberg.zip/gutenberg/austen-emma.txt')
-        .then(response => response.text())
-        .then(text => {
-            inputText.value = text.slice(0, 100000);
-            analyzeText(inputText.value);
-        })
-        .catch(error => {
-            console.error('Error loading sample text:', error);
-            inputText.value = getSampleTextFallback();
-            analyzeText(inputText.value);
-        });
-}
 
-function getSampleTextFallback() {
-    return `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-    The quick brown fox jumps over the lazy dog. She sells seashells by the seashore. Peter Piper picked a peck of pickled peppers. A man, a plan, a canal, Panama. All that glitters is not gold. A journey of a thousand miles begins with a single step. Actions speak louder than words. Beauty is in the eye of the beholder. Better late than never.
-    
-    I am going to the store to buy some groceries. She has been working on this project for weeks. They will arrive in the morning with all their luggage. We should have taken a different route to avoid traffic. You must submit your application before the deadline. He had already finished his homework when I called. The cat was sleeping on the windowsill in the sun.
-    
-    To be or not to be, that is the question. Whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles and by opposing end them. To die, to sleep—no more—and by a sleep to say we end the heartache and the thousand natural shocks that flesh is heir to.`;
-}
 
 function analyzeText(text) {
     const stats = calculateTextStats(text);
