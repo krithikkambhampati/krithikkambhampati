@@ -96,7 +96,6 @@ function logEvent(eventType, element) {
 
 function initTextAnalyzer() {
     const analyzeBtn = document.getElementById('analyze-btn');
-    const sampleTextBtn = document.getElementById('sample-text-btn');
     const inputText = document.getElementById('input-text');
     
     if (analyzeBtn) {
@@ -105,11 +104,7 @@ function initTextAnalyzer() {
         });
     }
     
-    if (sampleTextBtn) {
-        sampleTextBtn.addEventListener('click', function() {
-            loadSampleText();
-        });
-    }
+    
 }
 
 
