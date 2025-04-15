@@ -737,10 +737,7 @@ footer {
     font-style: italic;
 }
 
-#analyze-btn, #sample-text-btn {
-    margin-right: 0.75rem;
-    margin-bottom: 0.75rem;
-}
+
 
 @media (max-width: 768px) {
     .token-results-grid {
