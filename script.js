@@ -2,7 +2,28 @@ document.addEventListener('DOMContentLoaded', function() {
     initEventTracking();
     initTextAnalyzer();
     initUI();
+    initDarkMode();
 });
+
+function initDarkMode() {
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    // Check for saved theme preference
+    if (localStorage.getItem('theme') === 'dark') {
+        body.classList.add('dark-mode');
+    }
+
+    toggleButton.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        // Save theme preference
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('theme', 'dark');
+        } else {
+            localStorage.setItem('theme', 'light');
+        }
+    });
+}
 
 function initUI() {
     const menuIcon = document.querySelector('.menu-icon');
@@ -28,15 +49,6 @@ function initUI() {
             document.getElementById(tabId).classList.add('active');
         });
     });
-    
-    const toggleLogger = document.getElementById('toggle-logger');
-    const eventLog = document.getElementById('event-log');
-    
-    if (toggleLogger) {
-        toggleLogger.addEventListener('click', function() {
-            eventLog.classList.toggle('hidden');
-        });
-    }
 }
 
 function initEventTracking() {
@@ -81,8 +93,6 @@ function logEvent(eventType, element) {
     
     const logMessage = `${timestamp}, ${eventType}, ${elementType}`;
     console.log(logMessage);
-    
-  
 }
 
 function initTextAnalyzer() {
@@ -94,25 +104,20 @@ function initTextAnalyzer() {
             analyzeText(inputText.value || "");
         });
     }
-    
-    
 }
-
-
-
 
 function analyzeText(text) {
     const stats = calculateTextStats(text);
     displayTextStats(stats);
     
     const pronouns = countPronouns(text);
-    displayTokenCounts('pronoun-results', pronouns);
+    displayTokenCounts('pronoun-results', pronouns, 'pronoun-total', 'Total Pronouns');
     
     const prepositions = countPrepositions(text);
-    displayTokenCounts('preposition-results', prepositions);
+    displayTokenCounts('preposition-results', prepositions, 'preposition-total', 'Total Prepositions');
     
     const articles = countIndefiniteArticles(text);
-    displayTokenCounts('article-results', articles);
+    displayTokenCounts('article-results', articles, 'article-total', 'Total Articles');
 }
 
 function calculateTextStats(text) {
@@ -132,11 +137,11 @@ function calculateTextStats(text) {
 }
 
 function displayTextStats(stats) {
-    document.getElementById('char-count').textContent = `Letters:       ${stats.letters}`;
-    document.getElementById('word-count').textContent = `Words:         ${stats.words}`;
-    document.getElementById('space-count').textContent = `Spaces:       ${stats.spaces}`;
-    document.getElementById('newline-count').textContent = `Newlines:        ${stats.newlines}`;
-    document.getElementById('special-count').textContent = `Special Symbols:        ${stats.specialSymbols}`;
+    document.getElementById('char-count').textContent = `Letters: ${stats.letters}`;
+    document.getElementById('word-count').textContent = `Words: ${stats.words}`;
+    document.getElementById('space-count').textContent = `Spaces: ${stats.spaces}`;
+    document.getElementById('newline-count').textContent = `Newlines: ${stats.newlines}`;
+    document.getElementById('special-count').textContent = `Special Symbols: ${stats.specialSymbols}`;
 }
 
 function countPronouns(text) {
@@ -200,11 +205,15 @@ function countTokens(text, tokenList) {
     return sortedCounts;
 }
 
-function displayTokenCounts(elementId, counts) {
+function displayTokenCounts(elementId, counts, totalId, totalLabel) {
     const container = document.getElementById(elementId);
-    if (!container) return;
+    const totalContainer = document.getElementById(totalId);
+    if (!container || !totalContainer) return;
     
     container.innerHTML = '';
+    
+    const totalCount = Object.values(counts).reduce((sum, count) => sum + count, 0);
+    totalContainer.textContent = `${totalLabel}: ${totalCount}`;
     
     if (Object.keys(counts).length === 0) {
         container.innerHTML = '<div class="no-results">No matches found in the text.</div>';
