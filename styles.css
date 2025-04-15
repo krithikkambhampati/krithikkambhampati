@@ -1,4 +1,4 @@
-/* Base Styles */
+
 :root {
     --primary-color: #2563eb;
     --secondary-color: #3b82f6;
@@ -31,7 +31,6 @@ body {
     padding: 0 1.5rem;
 }
 
-/* Typography */
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
     font-weight: 600;
@@ -370,7 +369,7 @@ nav {
     font-weight: 500;
 }
 
-/* Projects Section */
+
 .projects {
     padding: 5rem 0;
     background-color: var(--bg-color);
@@ -414,7 +413,6 @@ nav {
     font-size: 0.85rem;
 }
 
-/* Text Analyzer Section */
 .text-analyzer {
     padding: 5rem 0;
     background-color: var(--white);
@@ -488,63 +486,7 @@ nav {
     overflow-y: auto;
 }
 
-/* Contact Section */
-.contact {
-    padding: 5rem 0;
-    background-color: var(--bg-color);
-}
 
-.contact-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-}
-
-.contact-info {
-    flex: 1 0 300px;
-}
-
-.contact-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 2rem;
-}
-
-.contact-icon {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-right: 1rem;
-}
-
-.contact-form {
-    flex: 1 0 300px;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--light-gray);
-    border-radius: 5px;
-    font-family: inherit;
-}
-
-.form-group textarea {
-    height: 150px;
-    resize: vertical;
-}
-
-/* Footer */
 footer {
     background-color: var(--text-color);
     color: var(--white);
@@ -579,48 +521,7 @@ footer {
     color: var(--light-gray);
 }
 
-/* Event Logger */
-.event-logger {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
 
-#toggle-logger {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    color: var(--white);
-    border: none;
-    cursor: pointer;
-    box-shadow: var(--box-shadow);
-    font-size: 1.25rem;
-}
-
-#event-log {
-    position: absolute;
-    bottom: 60px;
-    right: 0;
-    width: 300px;
-    max-height: 300px;
-    overflow-y: auto;
-    background-color: var(--white);
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: var(--box-shadow);
-}
-
-#event-log.hidden {
-    display: none;
-}
-
-#log-content {
-    font-size: 0.85rem;
-    white-space: nowrap;
-    overflow-x: auto;
-}
 
 /* Responsive Styles */
 @media (max-width: 768px) {
@@ -659,7 +560,6 @@ footer {
         margin-bottom: 1rem;
     }
 }
-/* Text Analyzer Enhancements */
 .text-analyzer {
     padding: 5rem 0;
     background-color: var(--white);

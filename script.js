@@ -82,16 +82,7 @@ function logEvent(eventType, element) {
     const logMessage = `${timestamp}, ${eventType}, ${elementType}`;
     console.log(logMessage);
     
-    const logContent = document.getElementById('log-content');
-    if (logContent) {
-        const logEntry = document.createElement('div');
-        logEntry.textContent = logMessage;
-        logContent.prepend(logEntry);
-        
-        if (logContent.children.length > 50) {
-            logContent.removeChild(logContent.lastChild);
-        }
-    }
+  
 }
 
 function initTextAnalyzer() {
